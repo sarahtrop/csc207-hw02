@@ -3,24 +3,22 @@ import java.io.File;
 import java.io.IOException;
 
 public class WordGenerator {
+	Scanner text;
 	
 	public boolean hasNext() {
-		return true;
+		return text.hasNext();
 	}
 	
 	public String next() {
-		String nextToken = null;
-		
-		return nextToken;
+		if (text.next()) { return text.next(); }
+		else { return NULL; }
 	}
 	
 	public int getWordCount() {
 		int words = 0;
-		
-		if (this.next() != null) {
+		if (next() != null) {
 			words++;
 		}
-		
 		return words;
 	}
 	
@@ -35,15 +33,15 @@ public class WordGenerator {
 	}
 	
 	public static void WordGenerator (String filename) throws IOException {
-		 Scanner text = new Scanner(new File(filename));
+		 text = new Scanner(new File(filename));
 		 int words;
 		 int sentences;
 		 
 		    while (text.hasNext()) {
 		        // PROCESS TEXT HERE
-		    	text.next();
-		    	words = text.getWordCount();
-		    	sentences = text.getSentenceCount();
+		    	next();
+		    	words = getWordCount();
+		    	sentences = getSentenceCount();
 		    }
 		    
 		    text.close();
