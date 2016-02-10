@@ -42,11 +42,7 @@ public class WordGenerator {
 		    text.close();
 	}
 	
-	public static void main(String[] args) {
-		try {
-			WordGenerator("C:/Users/Adam_2/workspace/hw02/src/hw02/newFile");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws IOException {
+		WordGenerator("/hw02/src/NewFile.txt");
 	}
 }

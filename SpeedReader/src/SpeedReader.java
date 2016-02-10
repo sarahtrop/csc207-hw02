@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class SpeedReader {
 
 	//EXAMPLE USAGE
-	public void demonstratePanel() {
+	public static void demonstratePanel() {
 	    DrawingPanel panel = new DrawingPanel(400, 300);
 	    Graphics g = panel.getGraphics();
 	    Font f = new Font("Courier", Font.BOLD, 46);
@@ -12,10 +12,10 @@ public class SpeedReader {
 	}
 	
 	//EXAMPLE USAGE
-	public void printStaggered() throws InterruptedException {
+	public static void printStaggered() throws InterruptedException {
 	    while(true) {
 	        System.out.println("Hello World!");
-	        Thread.sleep(1000);
+	        Thread.sleep(1000); // WPM in sleep
 	    }
 	}
 	
@@ -35,7 +35,9 @@ public class SpeedReader {
 		numericalInput[2] = fontSize;
 		numericalInput[3] = wpm;
 		
-
+		printStaggered();
+		
+		
 		in.close();
 	}
 
