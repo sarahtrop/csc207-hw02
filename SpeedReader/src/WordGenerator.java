@@ -4,8 +4,6 @@ import java.io.IOException;
 
 public class WordGenerator {
 	public static Scanner text;
-	public static int words;
-	public static int sentences;
 		
 	public static boolean hasNext() {
 		return text.hasNext();
@@ -31,18 +29,20 @@ public class WordGenerator {
 		return sentences;
 	}
 		
-	public static void WordGenerator (String filename) throws IOException {
-		 text = new Scanner(new File(filename));
+	public WordGenerator (String filename) throws IOException {
+		text = new Scanner(new File(filename));
+		int words;
+		int sentences;
 			 
 		    while (hasNext()) {
 		    	next();
 		    	words = getWordCount();
 		    	sentences = getSentenceCount();
 		    }
-		    text.close();
+		text.close();
 	}
 	
 	public static void main(String[] args) throws IOException {
-		WordGenerator("/hw02/src/NewFile.txt");
+		WordGenerator test = new WordGenerator("/home/hudsonad17/csc207/hw02/SpeedReader/src/newfile.txt");
 	}
 }
