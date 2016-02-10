@@ -22,7 +22,7 @@ public class WordGenerator {
 		
 	public static int getSentenceCount() {
 		int sentences = 0;
-		if (next().equals(".") || next().equals("!") || next().equals("?")) {
+		if (next().contains(".") || next().contains("!") || next().contains("?")) {
 			sentences++;
 		}
 			
