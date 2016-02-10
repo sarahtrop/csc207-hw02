@@ -3,50 +3,50 @@ import java.io.File;
 import java.io.IOException;
 
 public class WordGenerator {
-	Scanner text;
-	
-	public boolean hasNext() {
+	public static Scanner text;
+	public static int words;
+	public static int sentences;
+		
+	public static boolean hasNext() {
 		return text.hasNext();
 	}
 	
-	public String next() {
-		if (text.next()) { return text.next(); }
-		else { return NULL; }
+	public static String next() {
+		if (text.next() != null) { return text.next(); }
+		else { return null; }
 	}
-	
-	public int getWordCount() {
+		
+	public static int getWordCount() {
 		int words = 0;
 		if (next() != null) { words++; }
 		return words;
 	}
-	
-	public int getSentenceCount() {
+		
+	public static int getSentenceCount() {
 		int sentences = 0;
-		if (this.next().equals(".") || this.next().equals("!") || this.next().equals("?")) {
+		if (next().equals(".") || next().equals("!") || next().equals("?")) {
 			sentences++;
 		}
-		
+			
 		return sentences;
 	}
-	
+		
 	public static void WordGenerator (String filename) throws IOException {
 		 text = new Scanner(new File(filename));
-		 int words;
-		 int sentences;
-		 
-		    while (text.hasNext()) {
-		        // PROCESS TEXT HERE
+			 
+		    while (hasNext()) {
 		    	next();
 		    	words = getWordCount();
 		    	sentences = getSentenceCount();
 		    }
-		    
 		    text.close();
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		try {
+			WordGenerator("C:/Users/Adam_2/workspace/hw02/src/hw02/newFile");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
