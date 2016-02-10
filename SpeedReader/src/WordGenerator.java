@@ -16,15 +16,12 @@ public class WordGenerator {
 	
 	public int getWordCount() {
 		int words = 0;
-		if (next() != null) {
-			words++;
-		}
+		if (next() != null) { words++; }
 		return words;
 	}
 	
 	public int getSentenceCount() {
 		int sentences = 0;
-		
 		if (this.next().equals(".") || this.next().equals("!") || this.next().equals("?")) {
 			sentences++;
 		}
