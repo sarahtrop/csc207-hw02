@@ -1,3 +1,6 @@
+import java.awt.Font;
+import java.awt.Graphics;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class SpeedReader {
@@ -19,7 +22,7 @@ public class SpeedReader {
 	    }
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, IOException { // Not sure why this needs to be here, but Eclipse wanted it there.
 		Scanner in = new Scanner(System.in);
 		String filename, width, height, fontSize, wpm;
 		
@@ -36,6 +39,8 @@ public class SpeedReader {
 		numericalInput[3] = wpm;
 		
 		printStaggered();
+		
+		WordGenerator test = new WordGenerator("newfile.txt");
 		
 		
 		in.close();

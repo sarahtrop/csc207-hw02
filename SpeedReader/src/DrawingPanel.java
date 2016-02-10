@@ -887,8 +887,7 @@ public final class DrawingPanel extends FileFilter
                     fileURL = lines.get(0);
                 } else {
                     // user chooses file to compare against
-                    int choice = showOptionDialog(frame, "File to compare against?",
-                            "Choose File", filenames.toArray(new String[0]));
+                    int choice = showOptionDialog(frame, "File to compare against?", "Choose File", filenames.toArray(new String[0]));
                     if (choice < 0) {
                         return;
                     }
