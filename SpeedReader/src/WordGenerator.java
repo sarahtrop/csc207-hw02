@@ -4,28 +4,25 @@ import java.io.IOException;
 
 public class WordGenerator {
 	
-	public static Scanner text;
-	public static String filename;
-	public static int words, sentences;
-	public static WordGenerator file;
+	public Scanner text;
+	public String filename;
+	public int words = 0;
+	public int sentences = 0;
 		
-	public static boolean hasNext() {
+	public boolean hasNext() {
 		return text.hasNext();
 	}
 	
-	public static String next() {
-		if (text.next() != null) { return text.next(); }
-		else { return null; }
+	public String next() {
+		return text.next();
 	}
 		
-	public static int getWordCount() {
-		int words = 0;
+	public int getWordCount() {
 		if (next() != null) { words++; }
 		return words;
 	}
 	
-	public static int getSentenceCount() {
-		int sentences = 0;
+	public int getSentenceCount() {
 		if (next().contains(".") || next().contains("!") || next().contains("?")) {
 			sentences++;
 		}
@@ -35,16 +32,5 @@ public class WordGenerator {
 	
 	public WordGenerator (String filename) throws IOException, InterruptedException {
 		text = new Scanner(new File(filename));
-			 
-		    while (hasNext()) {
-		    	next();
-		    	words = getWordCount();
-		    	sentences = getSentenceCount();
-		    }
-		text.close();
-	}
-	
-	public static void main(String[] args) throws IOException, InterruptedException {
-		file = new WordGenerator(filename);
 	}
 }

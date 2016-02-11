@@ -15,26 +15,33 @@ public class SpeedReader {
 		}
 		
 		// setting variables from input
-		WordGenerator.filename = args[0]; 
+		String filename = args[0]; 
 		int width = Integer.parseInt(args[1]);
 		int height = Integer.parseInt(args[2]);
 		int fontSize = Integer.parseInt(args[3]);
 		wpm = Integer.parseInt(args[4]);
 		
-		while(WordGenerator.file.hasNext()) {
+		WordGenerator file = new WordGenerator(filename);
+		
+		while(file.hasNext()) {
 			// Making a panel in which to display words
 			DrawingPanel display = new DrawingPanel(width, height); 
 			Graphics g = display.getGraphics();
 			Font f = new Font("Courier", Font.BOLD, fontSize);
 			g.setFont(f);
+		
+			//Counting words and sentences
+			file.getWordCount();
+			file.getSentenceCount();
 			
 			//Printing words on display
-			g.drawString(WordGenerator.file.next(), (width/2), (height/2));
+			g.drawString(file.next(), (width/2), (height/2));
 			Thread.sleep(wpm*60*1000);
 		}
 		
-		System.out.println("Number of words in file: " + WordGenerator.words);
-		System.out.println("Number of sentences in file: " + WordGenerator.sentences);
+		
+		System.out.println("Number of words in file: " + file.words);
+		System.out.println("Number of sentences in file: " + file.sentences);
 	}
 
 }
