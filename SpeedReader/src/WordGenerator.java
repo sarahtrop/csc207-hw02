@@ -23,7 +23,7 @@ public class WordGenerator {
 		if (next() != null) { words++; }
 		return words;
 	}
-		
+	
 	public static int getSentenceCount() {
 		int sentences = 0;
 		if (next().contains(".") || next().contains("!") || next().contains("?")) {
@@ -33,13 +33,6 @@ public class WordGenerator {
 		return sentences;
 	}
 	
-	public void printStaggered() throws InterruptedException {
-	    while(true) {
-	        System.out.print(next());
-	        Thread.sleep((SpeedReader.wpm)*1000);
-	    }
-	}
-	
 	public WordGenerator (String filename) throws IOException, InterruptedException {
 		text = new Scanner(new File(filename));
 			 
@@ -47,7 +40,6 @@ public class WordGenerator {
 		    	next();
 		    	words = getWordCount();
 		    	sentences = getSentenceCount();
-			    printStaggered();
 		    }
 		text.close();
 	}

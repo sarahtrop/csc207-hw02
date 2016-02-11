@@ -9,3 +9,5 @@ Resources:
 Help from PM Osera on working through Part A and reading filenames
 http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
 http://stackoverflow.com/questions/12832006/scanner-error-with-nextint
+Help from V on using command line input instead of Scanners
+http://stackoverflow.com/questions/7937029/how-to-break-out-or-exit-a-method-in-java
