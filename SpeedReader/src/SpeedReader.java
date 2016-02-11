@@ -1,47 +1,35 @@
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class SpeedReader {
+	public static int wpm;
 
-	//EXAMPLE USAGE
-	public static void demonstratePanel() {
-	    DrawingPanel panel = new DrawingPanel(400, 300);
-	    Graphics g = panel.getGraphics();
-	    Font f = new Font("Courier", Font.BOLD, 46);
-	    g.setFont(f);
-	    g.drawString("Hello World!", 100, 100);
-	}
-	
-	//EXAMPLE USAGE
-	public static void printStaggered() throws InterruptedException {
-	    while(true) {
-	        System.out.println("Hello World!");
-	        Thread.sleep(1000); // WPM in sleep
-	    }
-	}
 	
 	public static void main(String[] args) throws InterruptedException, IOException { // Not sure why this needs to be here, but Eclipse wanted it there.
 		Scanner in = new Scanner(System.in);
-		String filename, width, height, fontSize, wpm;
 		
-		filename = in.next();
-		width = in.next();
-		height = in.next();
-		fontSize = in.next();
-		wpm = in.next();
-		int i;
-		String[] numericalInput = new String[4];
-		numericalInput[0] = width;
-		numericalInput[1] = height;
-		numericalInput[2] = fontSize;
-		numericalInput[3] = wpm;
+		// setting variables from input
+		WordGenerator.filename = in.next();
+		int width = Integer.parseInt(in.next());
+		int height = Integer.parseInt(in.next());
+		int fontSize = Integer.parseInt(in.next());
+		wpm = Integer.parseInt(in.nextLine());
 		
-		printStaggered();
+		// Making a panel in which to display words
+		DrawingPanel display = new DrawingPanel(width, height); 
+		Graphics g = display.getGraphics();
+		Font f = new Font("Courier", Font.BOLD, fontSize);
+		g.setFont(f);
+
+		int x = 1000;
+		int y = (height/2) + (fontSize/2);
 		
-		WordGenerator test = new WordGenerator("newfile.txt");
-		
+		while(WordGenerator.file.hasNext()){
+			x = (width/2) - (WordGenerator.file.next().length() / 2);
+			
+			g.drawString(WordGenerator.file.next(), x, y);
+		}
 		
 		in.close();
 	}

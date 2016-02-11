@@ -3,7 +3,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class WordGenerator {
+	
 	public static Scanner text;
+	public static String filename;
+	public static int words, sentences;
+	public static WordGenerator file;
 		
 	public static boolean hasNext() {
 		return text.hasNext();
@@ -28,21 +32,27 @@ public class WordGenerator {
 			
 		return sentences;
 	}
-		
-	public WordGenerator (String filename) throws IOException {
+	
+	public void printStaggered() throws InterruptedException {
+	    while(true) {
+	        System.out.print(next());
+	        Thread.sleep((SpeedReader.wpm)*1000);
+	    }
+	}
+	
+	public WordGenerator (String filename) throws IOException, InterruptedException {
 		text = new Scanner(new File(filename));
-		int words;
-		int sentences;
 			 
 		    while (hasNext()) {
 		    	next();
 		    	words = getWordCount();
 		    	sentences = getSentenceCount();
+			    printStaggered();
 		    }
 		text.close();
 	}
 	
-	public static void main(String[] args) throws IOException {
-		WordGenerator test = new WordGenerator("/home/hudsonad17/csc207/hw02/SpeedReader/src/newfile.txt");
+	public static void main(String[] args) throws IOException, InterruptedException {
+		file = new WordGenerator(filename);
 	}
 }

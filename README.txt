@@ -6,3 +6,6 @@ displaying words at a progressively faster speed to train the viewer to
 read faster.
 
 Resources:
+Help from PM Osera on working through Part A and reading filenames
+http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
+http://stackoverflow.com/questions/12832006/scanner-error-with-nextint
