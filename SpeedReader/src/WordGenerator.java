@@ -18,12 +18,12 @@ public class WordGenerator {
 	}
 		
 	public int getWordCount() {
-		if (next() != null) { words++; }
+		while (next() != null) { words++; }
 		return words;
 	}
 	
 	public int getSentenceCount() {
-		if (next().contains(".") || next().contains("!") || next().contains("?")) {
+		while (next().contains(".") || next().contains("!") || next().contains("?")) {
 			sentences++;
 		}
 			
