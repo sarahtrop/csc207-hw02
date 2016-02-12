@@ -17,6 +17,8 @@ public class SpeedReader {
 		int height = Integer.parseInt(args[2]);
 		int fontSize = Integer.parseInt(args[3]);
 		int wpm = Integer.parseInt(args[4]);
+		
+		int wordLength;
 
 		WordGenerator file = new WordGenerator(filename);
 
@@ -25,13 +27,15 @@ public class SpeedReader {
 		Graphics g = display.getGraphics();
 		Font f = new Font("Courier", Font.BOLD, fontSize);
 		g.setFont(f);
+		FontMetrics s_width = g.getFontMetrics(f);
 		Color white = new Color(255, 255, 255);
 		Color black = new Color(0, 0, 0);
 		
 		while(file.hasNext()) {
 			//Printing words on display
-			g.drawString(file.next(), (width/2), (height/2));
-			Thread.sleep(wpm*60/1000);
+			wordLength = s_width.stringWidth(file.next());
+			g.drawString(file.next(), ((width/2) - (wordLength/2)), (height/2));
+			Thread.sleep((60*1000)/wpm);
 			g.setColor(white);
 			g.fillRect(0, 0, width, height);
 			g.setColor(black);
