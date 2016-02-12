@@ -31,7 +31,7 @@ public class SpeedReader {
 		while(file.hasNext()) {
 			//Printing words on display
 			g.drawString(file.next(), (width/2), (height/2));
-			Thread.sleep(wpm*1000/60);
+			Thread.sleep(wpm*60/1000);
 			g.setColor(white);
 			g.fillRect(0, 0, width, height);
 			g.setColor(black);
