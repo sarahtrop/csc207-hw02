@@ -12,16 +12,16 @@ public class WordGenerator {
 	public boolean hasNext() {
 		return text.hasNext();
 	}
-	
+
 	public String next() {
 		words++;
-		String next_word = text.next();
-		if (next_word.endsWith(".") || next_word.endsWith("?") || next_word.endsWith("!")) {
+		String nextWord = text.next();
+		if (nextWord.endsWith(".") || nextWord.endsWith("?") || nextWord.endsWith("!")) {
 			sentences++;
 		}
-		return next_word;
+		return nextWord;
 	}
-		
+
 	public int getWordCount() {
 		return words;
 	}
@@ -30,7 +30,7 @@ public class WordGenerator {
 		return sentences;
 	}
 	
-	public WordGenerator (String filename) throws IOException, InterruptedException {
+	public WordGenerator (String filename) throws IOException {
 		text = new Scanner(new File(filename));
 	}
 }
