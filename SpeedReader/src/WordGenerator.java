@@ -14,19 +14,19 @@ public class WordGenerator {
 	}
 	
 	public String next() {
-		return text.next();
+		words++;
+		String next_word = text.next();
+		if (next_word.endsWith(".") || next_word.endsWith("?") || next_word.endsWith("!")) {
+			sentences++;
+		}
+		return next_word;
 	}
 		
 	public int getWordCount() {
-		while (next() != null) { words++; }
 		return words;
 	}
 	
 	public int getSentenceCount() {
-		while (next().contains(".") || next().contains("!") || next().contains("?")) {
-			sentences++;
-		}
-			
 		return sentences;
 	}
 	

@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class SpeedReader {
 
@@ -19,7 +18,6 @@ public class SpeedReader {
 		int fontSize = Integer.parseInt(args[3]);
 		int wpm = Integer.parseInt(args[4]);
 
-		System.out.println("WPM = " + wpm);
 		WordGenerator file = new WordGenerator(filename);
 
 		// Making a panel in which to display words
@@ -33,7 +31,7 @@ public class SpeedReader {
 		while(file.hasNext()) {
 			//Printing words on display
 			g.drawString(file.next(), (width/2), (height/2));
-			Thread.sleep(wpm*60*1000);
+			Thread.sleep(wpm*1000/60);
 			g.setColor(white);
 			g.fillRect(0, 0, width, height);
 			g.setColor(black);
@@ -46,5 +44,4 @@ public class SpeedReader {
 		System.out.println("Number of words in file: " + file.words);
 		System.out.println("Number of sentences in file: " + file.sentences);
 	}
-
 }
