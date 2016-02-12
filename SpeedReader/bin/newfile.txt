@@ -1,1 +1,3 @@
-a b c d e f g h i j k l.
+This is a test file. This file should be read at an WPM of user input, and on a white screen one word at a time. 
+Hedgehogs are the best, also I'm excited to go watch Deadpool. 
+Cupcakes are delicious. This is such a great test file.
