@@ -3,46 +3,34 @@ import java.io.File;
 import java.io.IOException;
 
 public class WordGenerator {
-	public static Scanner text;
+	
+	public Scanner text;
+	public String filename;
+	public int words = 0;
+	public int sentences = 0;
 		
-	public static boolean hasNext() {
+	public boolean hasNext() {
 		return text.hasNext();
 	}
 	
-	public static String next() {
-		if (text.next() != null) { return text.next(); }
-		else { return null; }
-	}
-		
-	public static int getWordCount() {
-		int words = 0;
-		if (next() != null) { words++; }
-		return words;
-	}
-		
-	public static int getSentenceCount() {
-		int sentences = 0;
-		if (next().contains(".") || next().contains("!") || next().contains("?")) {
+	public String next() {
+		words++;
+		String next_word = text.next();
+		if (next_word.endsWith(".") || next_word.endsWith("?") || next_word.endsWith("!")) {
 			sentences++;
 		}
-			
-		return sentences;
+		return next_word;
 	}
 		
-	public WordGenerator (String filename) throws IOException {
-		text = new Scanner(new File(filename));
-		int words;
-		int sentences;
-			 
-		    while (hasNext()) {
-		    	next();
-		    	words = getWordCount();
-		    	sentences = getSentenceCount();
-		    }
-		text.close();
+	public int getWordCount() {
+		return words;
 	}
 	
-	public static void main(String[] args) throws IOException {
-		WordGenerator test = new WordGenerator("/home/hudsonad17/csc207/hw02/SpeedReader/src/newfile.txt");
+	public int getSentenceCount() {
+		return sentences;
+	}
+	
+	public WordGenerator (String filename) throws IOException, InterruptedException {
+		text = new Scanner(new File(filename));
 	}
 }

@@ -1,49 +1,51 @@
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class SpeedReader {
 
-	//EXAMPLE USAGE
-	public static void demonstratePanel() {
-	    DrawingPanel panel = new DrawingPanel(400, 300);
-	    Graphics g = panel.getGraphics();
-	    Font f = new Font("Courier", Font.BOLD, 46);
-	    g.setFont(f);
-	    g.drawString("Hello World!", 100, 100);
-	}
-	
-	//EXAMPLE USAGE
-	public static void printStaggered() throws InterruptedException {
-	    while(true) {
-	        System.out.println("Hello World!");
-	        Thread.sleep(1000); // WPM in sleep
-	    }
-	}
-	
 	public static void main(String[] args) throws InterruptedException, IOException { // Not sure why this needs to be here, but Eclipse wanted it there.
-		Scanner in = new Scanner(System.in);
-		String filename, width, height, fontSize, wpm;
-		
-		filename = in.next();
-		width = in.next();
-		height = in.next();
-		fontSize = in.next();
-		wpm = in.next();
-		int i;
-		String[] numericalInput = new String[4];
-		numericalInput[0] = width;
-		numericalInput[1] = height;
-		numericalInput[2] = fontSize;
-		numericalInput[3] = wpm;
-		
-		printStaggered();
-		
-		WordGenerator test = new WordGenerator("newfile.txt");
-		
-		
-		in.close();
-	}
 
+		// If not enough arguments, quit
+		if (args.length != 5) {
+			System.out.println("Error: not enough arguments entered.");
+			return;
+		}
+
+		// setting variables from input
+		String filename = args[0]; 
+		int width = Integer.parseInt(args[1]);
+		int height = Integer.parseInt(args[2]);
+		int fontSize = Integer.parseInt(args[3]);
+		int wpm = Integer.parseInt(args[4]);
+		
+		int wordLength;
+
+		WordGenerator file = new WordGenerator(filename);
+
+		// Making a panel in which to display words
+		DrawingPanel display = new DrawingPanel(width, height); 
+		Graphics g = display.getGraphics();
+		Font f = new Font("Courier", Font.BOLD, fontSize);
+		g.setFont(f);
+		FontMetrics s_width = g.getFontMetrics(f);
+		Color white = new Color(255, 255, 255);
+		Color black = new Color(0, 0, 0);
+		
+		while(file.hasNext()) {
+			//Printing words on display
+			wordLength = s_width.stringWidth(file.next());
+			g.drawString(file.next(), ((width/2) - (wordLength/2)), (height/2));
+			Thread.sleep((60*1000)/wpm);
+			g.setColor(white);
+			g.fillRect(0, 0, width, height);
+			g.setColor(black);
+		}
+		
+		//Counting words and sentences
+		file.getWordCount();
+		file.getSentenceCount();
+
+		System.out.println("Number of words in file: " + file.words);
+		System.out.println("Number of sentences in file: " + file.sentences);
+	}
 }
